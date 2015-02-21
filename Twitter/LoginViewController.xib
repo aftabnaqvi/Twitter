@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="imageViewTwitterLogo" destination="KZ2-Uw-bfL" id="JNh-GC-wCu"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIH-G9-2Ey">
+                    <rect key="frame" x="100" y="167" width="121" height="30"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Login with Twitter">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onTwitterLogin:" destination="-1" eventType="touchUpInside" id="4jE-ci-2ud"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Twitter_logo_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="KZ2-Uw-bfL">
+                    <rect key="frame" x="110" y="247" width="100" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="YxD-1w-GVI"/>
+                        <constraint firstAttribute="height" constant="75" id="nNB-yN-JP7"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KZ2-Uw-bfL" firstAttribute="centerX" secondItem="MIH-G9-2Ey" secondAttribute="centerX" id="GLF-PN-gqt"/>
+                <constraint firstItem="KZ2-Uw-bfL" firstAttribute="top" secondItem="MIH-G9-2Ey" secondAttribute="bottom" constant="50" id="UBy-zf-S1I"/>
+                <constraint firstAttribute="centerX" secondItem="KZ2-Uw-bfL" secondAttribute="centerX" id="dME-Qb-pSy"/>
+                <constraint firstAttribute="centerY" secondItem="KZ2-Uw-bfL" secondAttribute="centerY" id="oho-ui-mfj"/>
+            </constraints>
+            <point key="canvasLocation" x="301" y="384"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Twitter_logo_white.png" width="1139" height="926"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
