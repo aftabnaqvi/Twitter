@@ -10,6 +10,7 @@
 		16A7024586B2AA2ACCA701A0 /* libPods-Twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B88889854560D8728E072D /* libPods-Twitter.a */; };
 		FA014D701A9884CC005206D9 /* ComposeTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA014D6E1A9884CC005206D9 /* ComposeTweetViewController.m */; };
 		FA014D731A988FCC005206D9 /* ComposeTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA014D721A988FCC005206D9 /* ComposeTweetViewController.xib */; };
+		FA014D751A99843B005206D9 /* new_tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA014D741A99843B005206D9 /* new_tweet.png */; };
 		FAD3E9EE1A95E27700E396EB /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD3E9EC1A95E27700E396EB /* TweetCell.m */; };
 		FAD3E9F11A95E31100E396EB /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD3E9F01A95E31100E396EB /* TweetCell.xib */; };
 		FAD3E9F31A95E37F00E396EB /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD3E9F21A95E37F00E396EB /* favorite_on.png */; };
@@ -52,6 +53,7 @@
 		FA014D6D1A9884CC005206D9 /* ComposeTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeTweetViewController.h; sourceTree = "<group>"; };
 		FA014D6E1A9884CC005206D9 /* ComposeTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeTweetViewController.m; sourceTree = "<group>"; };
 		FA014D721A988FCC005206D9 /* ComposeTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeTweetViewController.xib; sourceTree = "<group>"; };
+		FA014D741A99843B005206D9 /* new_tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_tweet.png; sourceTree = "<group>"; };
 		FAD3E9EB1A95E27700E396EB /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		FAD3E9EC1A95E27700E396EB /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		FAD3E9F01A95E31100E396EB /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		FAF886531A9488A2005BCEC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FA014D741A99843B005206D9 /* new_tweet.png */,
 				FAD3E9FE1A95E3B600E396EB /* Twitter_logo_white.png */,
 				FAD3E9FC1A95E3A800E396EB /* retweet.png */,
 				FAD3E9FA1A95E3A100E396EB /* retweet_on.png */,
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD3EA041A970EAD00E396EB /* TweetsViewController.xib in Resources */,
+				FA014D751A99843B005206D9 /* new_tweet.png in Resources */,
 				FAD3E9FF1A95E3B600E396EB /* Twitter_logo_white.png in Resources */,
 				FAD3E9F91A95E39900E396EB /* reply.png in Resources */,
 				FAD3E9F51A95E38A00E396EB /* bird_blue_48.png in Resources */,

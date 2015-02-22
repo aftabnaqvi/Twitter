@@ -1,5 +1,5 @@
 //
-//  ComposeTweetViewController.h
+//  ComposeTweetViewControl ler.h
 //  Twitter
 //
 //  Created by Syed Naqvi on 2/21/15.
@@ -18,8 +18,8 @@
 
 @interface ComposeTweetViewController : UIViewController
 
-@property (nonatomic, strong) Tweet *tweet; // reply
-@property (nonatomic, strong) User *user; // message 
+@property (nonatomic, strong) Tweet *reply; // reply
+@property (nonatomic, strong) User *message; // message
 @property (nonatomic, weak) id <ComposeTweetViewControllerDelegate> delegate;
 
 @end

@@ -96,9 +96,6 @@
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <connections>
-                            <action selector="onProfile:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2we-1N-gFV"/>
-                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClE-gS-xf8">
                         <rect key="frame" x="170" y="86" width="16" height="16"/>

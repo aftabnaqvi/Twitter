@@ -66,9 +66,11 @@
 	
 	// set title
 	self.navigationItem.title = @"Home";
-	
+
 	// add New button icon
-	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(onNew)];
+	UIImage *image = [[UIImage imageNamed:@"new_tweet"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(onNew)];
+	
 	self.navigationItem.rightBarButtonItem = rightBarButton;
 	
 	self.navigationController.navigationBar.barTintColor = RGB(85, 172, 238);
@@ -110,9 +112,8 @@
 	[User logout];
 }
 
-
-
 #pragma mark tableView
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// unhighlight selection
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -195,6 +196,7 @@
 		} else {
 			NSLog(@"No more tweets retrieved");
 		}
+		
 		if(error){
 			NSLog(@"Error: %@", error);
 		}
@@ -215,7 +217,7 @@
 	UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
 	nvc.navigationBar.translucent = NO;
 	if(tweetCell != nil){
-		vc.tweet = tweetCell.tweet;
+		vc.reply = tweetCell.tweet;
 	}
 	[self.navigationController presentViewController:nvc animated:YES completion:nil];
 }

@@ -10,8 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "User.h"
 #import "TwitterClient.h"
+#import "TweetCell.h"
 
-@interface ComposeTweetViewController () <UITextViewDelegate>
+@interface ComposeTweetViewController () <UITextViewDelegate, TweetCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView	*profileImageView;
 @property (weak, nonatomic) IBOutlet UITextView		*tweetTextView;
@@ -43,21 +44,21 @@
 	
 	
 	// set initial reply to string if a reply
-	if (self.tweet) {
+	if (self.reply) {
 		// if replying to a retweet, mention original tweet author and retweeter
-		if (self.tweet.retweetedTweet) {
-			if ([self.tweet.user.screenName isEqualToString:[[User currentUser] screenName]]) {
-				self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.tweet.retweetedTweet.user.screenName];
+		if (self.reply.retweetedTweet) {
+			if ([self.reply.user.screenName isEqualToString:[[User currentUser] screenName]]) {
+				self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.reply.retweetedTweet.user.screenName];
 			} else {
-				self.tweetTextView.text = [NSString stringWithFormat:@"@%@ @%@ ", self.tweet.retweetedTweet.user.screenName, self.tweet.user.screenName];
+				self.tweetTextView.text = [NSString stringWithFormat:@"@%@ @%@ ", self.reply.retweetedTweet.user.screenName, self.reply.user.screenName];
 			}
 		} else {
-			self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.tweet.user.screenName];
+			self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.reply.user.screenName];
 		}
 	}
 	
-	if (self.user) {
-		self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.user.screenName];
+	if (self.message) {
+		self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.message.screenName];
 	}
 	
 	// initialize character count
@@ -87,7 +88,6 @@
 	self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 	[self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 	self.navigationController.navigationBar.translucent = NO;
-
 }
 
 - (void)onCancel {
@@ -97,7 +97,7 @@
 }
 
 - (void)onTweet {
-	Tweet *tweet = [[Tweet alloc] initWithText:self.tweetTextView.text replyToTweet:self.tweet];
+	Tweet *tweet = [[Tweet alloc] initWithText:self.tweetTextView.text replyToTweet:self.reply];
 	
 	[[TwitterClient sharedInstance] postTweetWithParams:nil tweet:tweet completion:^(NSString *tweetIdString, NSError *error) {
 		if(tweetIdString != nil) {
@@ -108,7 +108,7 @@
 				[self.delegate didTweetSuccessfully];
 
 			} else {
-				NSLog(@"Error sending tweet: %@", tweet);
+				NSLog(@"Error posting tweet: %@", tweet);
 			}
 		}
 	}];
@@ -118,6 +118,8 @@
 	[self.delegate didTweet:tweet];
 }
 
+#pragma mark <UITextViewDelegate>
+// keeps track of character count while typing the tweet.
 - (void) textViewDidChange:(UITextView *)textView {
 	long charsLeft = 140 - textView.text.length;
 	
@@ -126,8 +128,9 @@
 	if (charsLeft < 0) {
 		titleColor = [UIColor redColor];
 	} else {
-		titleColor = [UIColor whiteColor];
+		titleColor = [UIColor blackColor];
 	}
+	
 	if (charsLeft < 0 || charsLeft == 140) {
 		// disable tweet button
 		self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -136,13 +139,17 @@
 		self.navigationItem.rightBarButtonItem.enabled = YES;
 	}
 	
-	[self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:titleColor forKey:NSForegroundColorAttributeName]];
-	
-	UILabel *charsLeftTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-	charsLeftTitle.textAlignment = NSTextAlignmentRight;
-	charsLeftTitle.text = [NSString stringWithFormat:@"%ld", charsLeft];
-	charsLeftTitle.textColor = titleColor;
-	[charsLeftTitle setFont: [UIFont fontWithName:@"Helvetica Neue" size:15.0]];
-	self.navigationItem.titleView = charsLeftTitle;
+	UILabel *charsRemaningTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+	charsRemaningTitle.textAlignment = NSTextAlignmentRight;
+	charsRemaningTitle.text = [NSString stringWithFormat:@"%ld", charsLeft];
+	charsRemaningTitle.textColor = titleColor;
+	[charsRemaningTitle setFont: [UIFont fontWithName:@"Helvetica Neue" size:15.0]];
+	self.navigationItem.titleView = charsRemaningTitle;
 }
+
+#pragma mark <TweetCellDelegate>
+- (void)onReply:(TweetCell *)tweetCell{
+	
+}
+
 @end

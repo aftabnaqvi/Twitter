@@ -180,7 +180,6 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 	NSString *postUrl = [NSString stringWithFormat:@"1.1/favorites/create.json?id=%@", tweet.idString];
 	
 	[self POST:[postUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		//        NSLog([NSString stringWithFormat:@"successfully favorited tweet: %@", responseObject]);
 		completion(nil);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		completion(error);
@@ -191,7 +190,6 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 	NSString *postUrl = [NSString stringWithFormat:@"1.1/favorites/destroy.json?id=%@", tweet.idString];
 	
 	[self POST:[postUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		//        NSLog([NSString stringWithFormat:@"successfully unfavorited tweet: %@", responseObject]);
 		completion(nil);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		completion(error);

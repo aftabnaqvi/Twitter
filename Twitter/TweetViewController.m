@@ -9,8 +9,10 @@
 #import "TweetViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "TwitterClient.h"
+#import "ComposeTweetViewController.h"
 
-@interface TweetViewController ()
+@interface TweetViewController () <ComposeTweetViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
@@ -38,29 +40,39 @@
 	// set title
 	self.navigationItem.title = @"Tweet";
 	
-	// add Reply button icon
-	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(onReply)];
+	[self setupView];
+}
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
+
+-(void) setupView{
+	// add New button icon
+	UIImage *image = [[UIImage imageNamed:@"new_tweet"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(onReply)];
+	
 	self.navigationItem.rightBarButtonItem = rightBarButton;
 	
-	if (_tweet) {
-		//User *user = _tweet.user;
+	if (self.tweet) {
 		User *user = self.tweet.user;
 		Tweet *tweetToDisplay;
 		
-		if (self.tweet.retweetedTweet) {
+		if (self.tweet.retweetedTweet != nil) {
 			tweetToDisplay = self.tweet.retweetedTweet;
 			self.retweetedByLabel.text = [NSString stringWithFormat:@"%@ retweeted", user.name];
 			[self.retweetImageView setHidden:NO];
 			[self.retweetedByLabel setHidden:NO];
 			// update constraints dynamically
-			//self.topProfileImageConstraint.constant = 32;
-			//self.topNameConstraint.constant = 32;
+			self.topProfileImageConstraint.constant = 20;
+			self.topNameConstraint.constant = 20;
 		} else {
 			tweetToDisplay = self.tweet;
 			[self.retweetImageView setHidden:YES];
 			[self.retweetedByLabel setHidden:YES];
-			//self.topProfileImageConstraint.constant = 16;
-			//self.topNameConstraint.constant = 16;
+			self.topProfileImageConstraint.constant = 10;
+			self.topNameConstraint.constant = 10;
 		}
 		
 		// rounded corners for profile images
@@ -83,7 +95,7 @@
 		[self highlightButton:self.favoriteButton highlight:self.tweet.favorited];
 		
 		// if this tweet has no id, then disable all actions
-		if (!self.tweet.idString) {
+		if (self.tweet.idString == nil) {
 			rightBarButton.enabled = NO;
 			self.retweetButton.enabled = NO;
 			self.replyButton.enabled = NO;
@@ -91,24 +103,22 @@
 		}
 		
 		// if this is the user's own tweet, disable retweet
-		if (!self.tweet.retweetedTweet && [[[User currentUser] screenName] isEqualToString:user.screenName]) {
+		if (self.tweet.retweetedTweet != nil &&
+			[[[User currentUser] screenName] isEqualToString:user.screenName]) {
 			self.retweetButton.enabled = NO;
 		}
-	}}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	}
 }
 
 - (void)onReply {
-//	ComposeViewController *vc = [[ComposeViewController alloc] init];
-//	vc.delegate = self;
-//	UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-//	nvc.navigationBar.translucent = NO;
-//	// set reply to tweet property
-//	vc.replyToTweet = _tweet;
-//	[self.navigationController presentViewController:nvc animated:YES completion:nil];
+	ComposeTweetViewController *vc = [[ComposeTweetViewController alloc] init];
+	vc.delegate = self;
+	UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+	nvc.navigationBar.translucent = NO;
+	
+	// set reply to tweet property
+	vc.reply = self.tweet;
+	[self.navigationController presentViewController:nvc animated:YES completion:nil];
 }
 
 - (void)setTweet:(Tweet *)tweet {
@@ -155,9 +165,15 @@
 	}
 }
 
-#pragma mark <TweetViewControllerDelegate>
-- (void) didTweet:(Tweet *)tweet {
-	[self.delegate didReply:tweet];
+#pragma mark <ComposeTweetViewControllerDelegate>
+
+- (void)didTweet:(Tweet *)tweet{
+	NSLog(@"didTweet successfully.");
+}
+
+- (void)didTweetSuccessfully{
+	NSLog(@"didTweetSuccessfully");
+	
 }
 @end
 
