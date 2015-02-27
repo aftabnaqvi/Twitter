@@ -168,7 +168,7 @@
 #pragma mark <ComposeTweetViewControllerDelegate>
 
 - (void)didTweet:(Tweet *)tweet{
-	NSLog(@"didTweet successfully.");
+	[self.delegate didReply:tweet];
 }
 
 - (void)didTweetSuccessfully{

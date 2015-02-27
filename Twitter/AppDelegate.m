@@ -12,6 +12,7 @@
 #import "User.h"
 
 #import "TweetsViewController.h"
+#import "MenuViewController.h"
 
 
 @interface AppDelegate ()
@@ -30,7 +31,7 @@
 	User *user = [User currentUser];
 	if (user != nil) {
 		NSLog(@"Welcome %@", user.name);
-		self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+		self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MenuViewController alloc] init]];
 		
 		//TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
 		//self.window.rootViewController = tweetsViewController;

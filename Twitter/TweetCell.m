@@ -169,6 +169,7 @@
 
 - (IBAction)onFavorite:(id)sender {
 	Tweet *tweetToFavorite;
+	
 	if (_tweet.retweetedTweet) {
 		tweetToFavorite = _tweet.retweetedTweet;
 	} else {
@@ -187,11 +188,13 @@
 	} else {
 		self.favoriteCountLabel.textColor = [UIColor grayColor];
 	}
+	
 	if (tweetToFavorite.favoriteCount > 0) {
 		self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tweetToFavorite.favoriteCount];
 	} else {
 		self.favoriteCountLabel.text = @"";
 	}
+	
 	[self highlightButton:self.favoriteButton highlight:favorited];
 }
 @end

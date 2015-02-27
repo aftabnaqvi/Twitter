@@ -11,6 +11,8 @@
 		FA014D701A9884CC005206D9 /* ComposeTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA014D6E1A9884CC005206D9 /* ComposeTweetViewController.m */; };
 		FA014D731A988FCC005206D9 /* ComposeTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA014D721A988FCC005206D9 /* ComposeTweetViewController.xib */; };
 		FA014D751A99843B005206D9 /* new_tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = FA014D741A99843B005206D9 /* new_tweet.png */; };
+		FA6EB6071A9DBDBC002A62E6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EB6051A9DBDBC002A62E6 /* MenuViewController.m */; };
+		FA6EB60C1A9F00C6002A62E6 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6EB60B1A9F00C6002A62E6 /* MenuViewController.xib */; };
 		FAD3E9EE1A95E27700E396EB /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD3E9EC1A95E27700E396EB /* TweetCell.m */; };
 		FAD3E9F11A95E31100E396EB /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD3E9F01A95E31100E396EB /* TweetCell.xib */; };
 		FAD3E9F31A95E37F00E396EB /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD3E9F21A95E37F00E396EB /* favorite_on.png */; };
@@ -54,6 +56,9 @@
 		FA014D6E1A9884CC005206D9 /* ComposeTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeTweetViewController.m; sourceTree = "<group>"; };
 		FA014D721A988FCC005206D9 /* ComposeTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeTweetViewController.xib; sourceTree = "<group>"; };
 		FA014D741A99843B005206D9 /* new_tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_tweet.png; sourceTree = "<group>"; };
+		FA6EB6041A9DBDBC002A62E6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		FA6EB6051A9DBDBC002A62E6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		FA6EB60B1A9F00C6002A62E6 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		FAD3E9EB1A95E27700E396EB /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		FAD3E9EC1A95E27700E396EB /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		FAD3E9F01A95E31100E396EB /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
@@ -223,6 +228,9 @@
 				FA014D6D1A9884CC005206D9 /* ComposeTweetViewController.h */,
 				FA014D6E1A9884CC005206D9 /* ComposeTweetViewController.m */,
 				FA014D721A988FCC005206D9 /* ComposeTweetViewController.xib */,
+				FA6EB6041A9DBDBC002A62E6 /* MenuViewController.h */,
+				FA6EB6051A9DBDBC002A62E6 /* MenuViewController.m */,
+				FA6EB60B1A9F00C6002A62E6 /* MenuViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 				FAD3E9F71A95E39200E396EB /* favorite.png in Resources */,
 				FAD3EA0B1A973F0000E396EB /* TweetViewController.xib in Resources */,
 				FAD3E9FD1A95E3A800E396EB /* retweet.png in Resources */,
+				FA6EB60C1A9F00C6002A62E6 /* MenuViewController.xib in Resources */,
 				FAF8867E1A948A73005BCEC3 /* LoginViewController.xib in Resources */,
 				FA014D731A988FCC005206D9 /* ComposeTweetViewController.xib in Resources */,
 				FAD3E9F11A95E31100E396EB /* TweetCell.xib in Resources */,
@@ -394,6 +403,7 @@
 				FAD3EA031A970EAD00E396EB /* TweetsViewController.m in Sources */,
 				FAF886561A9488A2005BCEC3 /* main.m in Sources */,
 				FAF8867D1A948A73005BCEC3 /* LoginViewController.m in Sources */,
+				FA6EB6071A9DBDBC002A62E6 /* MenuViewController.m in Sources */,
 				FAD3E9EE1A95E27700E396EB /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

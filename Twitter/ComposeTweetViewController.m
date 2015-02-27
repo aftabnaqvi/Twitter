@@ -12,7 +12,7 @@
 #import "TwitterClient.h"
 #import "TweetCell.h"
 
-@interface ComposeTweetViewController () <UITextViewDelegate, TweetCellDelegate>
+@interface ComposeTweetViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView	*profileImageView;
 @property (weak, nonatomic) IBOutlet UITextView		*tweetTextView;
@@ -146,10 +146,4 @@
 	[charsRemaningTitle setFont: [UIFont fontWithName:@"Helvetica Neue" size:15.0]];
 	self.navigationItem.titleView = charsRemaningTitle;
 }
-
-#pragma mark <TweetCellDelegate>
-- (void)onReply:(TweetCell *)tweetCell{
-	
-}
-
 @end
