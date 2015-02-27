@@ -35,6 +35,8 @@ NSString * const UserLogoutNotification = @"UserLogoutNotification";
 		
 		// image urls
 		self.profileImageUrl = dictionary[@"profile_image_url"];
+		self.backgroundImageUrl = dictionary[@"profile_background_image_url"];
+		self.bannerUrl = dictionary[@"profile_banner_url"];
 		
 		// counts
 		self.tweetCount = [dictionary[@"statuses_count"] integerValue];

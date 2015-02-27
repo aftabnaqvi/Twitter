@@ -7,7 +7,10 @@
 //
 
 #import "MenuViewController.h"
+//#import "ProfileViewController.h"
 #import "TweetsViewController.h"
+//#import "MentionsViewController.h"
+//#import "AccountsViewController.h"
 #import "TwitterClient.h"
 
 @interface MenuViewController ()
@@ -19,6 +22,7 @@
 
 @property (strong, nonatomic) NSArray *viewControllers;
 @property (strong, nonatomic) UIViewController *currentVC;
+//@property (strong, nonatomic) AccountsViewController *avc;
 
 @end
 
@@ -43,6 +47,16 @@
 
 - (void)initViewControllers {
 	
+	// Profile View
+	ProfileViewController *pvc = [[ProfileViewController alloc] init];
+	UINavigationController *pnvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+	pnvc.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0f green:172/255.0f blue:238/255.0f alpha:1.0f];
+	pnvc.navigationBar.tintColor = [UIColor whiteColor];
+	[pnvc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+	pnvc.navigationBar.translucent = NO;
+	// set self as delage for pull downs
+	pvc.delegate = self;
+	
 	// Timeline
 	TweetsViewController *tvc = [[TweetsViewController alloc] init];
 	UINavigationController *tnvc = [[UINavigationController alloc] initWithRootViewController:tvc];
@@ -51,7 +65,18 @@
 	[tnvc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 	tnvc.navigationBar.translucent = NO;
 	
-	self.currentVC = tnvc;
+	//	// Mentions
+	//	MentionsViewController *mvc = [[MentionsViewController alloc] init];
+	//	UINavigationController *mnvc = [[UINavigationController alloc] initWithRootViewController:mvc];
+	//	mnvc.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0f green:172/255.0f blue:238/255.0f alpha:1.0f];
+	//	mnvc.navigationBar.tintColor = [UIColor whiteColor];
+	//	[mnvc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+	//	mnvc.navigationBar.translucent = NO;
+	//
+	self.viewControllers = [NSArray arrayWithObjects:pnvc, tnvc, nil];
+	//
+	//	// set profile as initial view
+	self.currentVC = tvc;
 	self.currentVC.view.frame = self.contentView.bounds;
 	[self.contentView addSubview:self.currentVC.view];
 }
@@ -69,6 +94,8 @@
 		[self removeCurrentViewController];
 		self.currentVC = self.viewControllers[indexPath.row];
 		[self setContentController];
+	} else {
+		[self showAccountViewController];
 	}
 }
 
@@ -128,6 +155,10 @@
 	}];
 }
 
+- (void)onPullForAccounts {
+	[self showAccountViewController];
+}
+
 - (void)setAccount {
 	NSLog(@"Set account");
 	
@@ -146,11 +177,46 @@
 	}];
 }
 
+- (void)switchAccount:(User *)user {
+	// if account is the same, then just return
+	if ([user.screenName isEqualToString:User.currentUser.screenName]) {
+		[self showProfileViewController];
+		return;
+	}
+	
+	NSLog(@"Switch account");
+	[[TwitterClient sharedInstance] loginForUser:user completion:^(User *user, NSError *error) {
+		if (user != nil) {
+			[self removeCurrentViewController];
+			User.currentUser = user;
+			[self setAccount];
+		} else {
+			// Present error view
+			NSLog(@"Login error");
+		}
+	}];
+}
+
 - (void)addAccount {
 	NSLog(@"Add account");
+	
+	//	[[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
+	//		if (user != nil) {
+	//			[self.avc updateAccounts];
+	//			[self removeCurrentViewController];
+	//			User.currentUser = user;
+	//			[self setAccount];
+	//		} else {
+	//			// Present error view
+	//			NSLog(@"Login error");
+	//		}
+	//	}];
 }
 
 - (void)removeCurrentViewController {
+	//    [self.currentVC willMoveToParentViewController:nil];
+	//    [self.currentVC.view removeFromSuperview];
+	//    [self.currentVC removeFromParentViewController];
 }
 
 - (void)setContentController {
@@ -163,6 +229,36 @@
 		self.contentViewYConstraint.constant = 0;
 		[self.view layoutIfNeeded];
 	}];
+}
+
+- (void)setAccountController {
+	self.currentVC.view.frame = self.accountsView.bounds;
+	[self.accountsView addSubview:self.currentVC.view];
+	[self.currentVC didMoveToParentViewController:self];
+	
+	[UIView animateWithDuration:.24 animations:^{
+		self.contentViewXConstraint.constant = 0;
+		self.contentViewYConstraint.constant = -self.contentView.bounds.size.height;
+		[self.view layoutIfNeeded];
+	}];
+}
+
+- (void)showAccountViewController {
+	//	[self removeCurrentViewController];
+	//	if (!self.avc) {
+	//		self.avc = [[AccountsViewController alloc] init];
+	//		self.avc.delegate = self;
+	//	} else {
+	//		[self.avc updateAccounts];
+	//	}
+	//	self.currentVC = self.avc;
+	//	[self setAccountController];
+}
+
+- (void)showProfileViewController {
+	[self removeCurrentViewController];
+	self.currentVC = self.viewControllers[0];
+	[self setContentController];
 }
 
 @end

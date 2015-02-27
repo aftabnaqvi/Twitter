@@ -23,13 +23,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="@screenName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRJ-oN-Ll4">
-                        <rect key="frame" x="149" y="33" width="77.5" height="14"/>
+                        <rect key="frame" x="149" y="33" width="78" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Sample Tweet Text........." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAN-uk-dsn">
-                        <rect key="frame" x="72" y="52" width="372" height="25.5"/>
+                        <rect key="frame" x="72" y="52" width="372" height="26"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -80,13 +80,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="someone retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAo-8E-TSg">
-                        <rect key="frame" x="72" y="10" width="106.5" height="14"/>
+                        <rect key="frame" x="72" y="10" width="107" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Syed Naqvi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZD5-hG-kaN">
-                        <rect key="frame" x="72" y="32" width="69.5" height="15.5"/>
+                        <rect key="frame" x="72" y="32" width="70" height="16"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                     <constraint firstItem="iRd-as-d21" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="48" id="kQe-8S-1xk"/>
                     <constraint firstItem="pTi-He-3D9" firstAttribute="leading" secondItem="xbe-Gb-ksG" secondAttribute="trailing" constant="5" id="kqE-NZ-GWM"/>
                     <constraint firstItem="TAN-uk-dsn" firstAttribute="leading" secondItem="Lfz-dZ-3uB" secondAttribute="trailing" constant="8" id="mVe-X5-Svv"/>
-                    <constraint firstItem="JRJ-oN-Ll4" firstAttribute="leading" secondItem="ZD5-hG-kaN" secondAttribute="trailing" constant="8" id="rZt-JU-du4"/>
+                    <constraint firstItem="JRJ-oN-Ll4" firstAttribute="leading" secondItem="ZD5-hG-kaN" secondAttribute="trailing" constant="7" id="rZt-JU-du4"/>
                     <constraint firstItem="duP-ZZ-4zf" firstAttribute="height" secondItem="Lfz-dZ-3uB" secondAttribute="height" id="sEP-eo-5Cb"/>
                     <constraint firstItem="qWc-Te-16i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JRJ-oN-Ll4" secondAttribute="trailing" constant="8" id="urH-tp-YXD"/>
                     <constraint firstItem="lAo-8E-TSg" firstAttribute="leading" secondItem="iRd-as-d21" secondAttribute="trailing" constant="8" id="vJF-nY-1ST"/>
@@ -150,7 +150,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="TAN-uk-dsn" secondAttribute="trailing" constant="8" id="x9d-Xs-c1V"/>
                     <constraint firstItem="ClE-gS-xf8" firstAttribute="leading" secondItem="IGT-XV-Cq1" secondAttribute="trailing" constant="82" id="xXK-xg-23r"/>
                     <constraint firstItem="IGT-XV-Cq1" firstAttribute="top" secondItem="TAN-uk-dsn" secondAttribute="bottom" constant="8" id="zQt-rH-1w3"/>
-                    <constraint firstItem="TAN-uk-dsn" firstAttribute="top" secondItem="ZD5-hG-kaN" secondAttribute="bottom" constant="5" id="zYi-Ar-qaR"/>
+                    <constraint firstItem="TAN-uk-dsn" firstAttribute="top" secondItem="ZD5-hG-kaN" secondAttribute="bottom" constant="4" id="zYi-Ar-qaR"/>
                 </constraints>
             </tableViewCellContentView>
             <gestureRecognizers/>

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileViewController.h"
+//#import "AccountsViewController.h"
 
-@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ProfileViewControllerDelegate>
+
+//, ProfileViewControllerDelegate, AccountsViewControllerDelegate>
+
+- (void)showAccountViewController;
 
 @end

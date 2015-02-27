@@ -65,14 +65,14 @@
 			[self.retweetImageView setHidden:NO];
 			[self.retweetedByLabel setHidden:NO];
 			// update constraints dynamically
-			self.topProfileImageConstraint.constant = 20;
-			self.topNameConstraint.constant = 20;
+			self.topProfileImageConstraint.constant = 30;
+			self.topNameConstraint.constant = 30;
 		} else {
 			tweetToDisplay = self.tweet;
 			[self.retweetImageView setHidden:YES];
 			[self.retweetedByLabel setHidden:YES];
-			self.topProfileImageConstraint.constant = 10;
-			self.topNameConstraint.constant = 10;
+			self.topProfileImageConstraint.constant = 15;
+			self.topNameConstraint.constant = 15;
 		}
 		
 		// rounded corners for profile images

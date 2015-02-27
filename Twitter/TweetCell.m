@@ -55,19 +55,19 @@
 		[self.retweetImageView setHidden:NO];
 		[self.retweetedByLabel setHidden:NO];
 		// update constraints dynamically
-		self.topProfileImageConstraint.constant = 20;
-		self.topNameConstraint.constant = 20;
-		self.topScreenNameConstraint.constant = 20;
-		self.topTimestampConstraint.constant = 20;
+		self.topProfileImageConstraint.constant = 30;
+		self.topNameConstraint.constant = 30;
+		self.topScreenNameConstraint.constant = 30;
+		self.topTimestampConstraint.constant = 30;
 	} else {
 		tweetToDisplay = tweet;
 		[self.retweetImageView setHidden:YES];
 		[self.retweetedByLabel setHidden:YES];
 		// update constraints dynamically
-		self.topProfileImageConstraint.constant = 10;
-		self.topNameConstraint.constant = 10;
-		self.topScreenNameConstraint.constant = 11;
-		self.topTimestampConstraint.constant = 10;
+		self.topProfileImageConstraint.constant = 15;
+		self.topNameConstraint.constant = 15;
+		self.topScreenNameConstraint.constant = 16;
+		self.topTimestampConstraint.constant = 15;
 	}
 	
 	// rounded corners for profile images
