@@ -43,10 +43,10 @@ Profile page
 - [x] Optional: Pulling down the profile page should blur and resize the header image.
 - [x] Home Timeline
 - [x] Tapping on a user image should bring up that user's profile page
-- [] Optional: Account switching
-- [] Long press on tab bar to bring up Account view with animation
-- [] Tap account to switch to
-- [] Include a plus button to Add an Account
-- [] Swipe to delete an account
+- [ ] Optional: Account switching
+- [ ] Long press on tab bar to bring up Account view with animation
+- [ ] Tap account to switch to
+- [ ] Include a plus button to Add an Account
+- [ ] Swipe to delete an account
 
 ![Alt text](https://github.com/aftabnaqvi/Twitter/blob/master/Twitter%20Demo2.gif "cc-flow.jpeg")
