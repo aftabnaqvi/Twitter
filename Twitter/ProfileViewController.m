@@ -34,54 +34,37 @@
 	
 	User *user = self.user ? self.user : [User currentUser];
 	
-	// profile view via profile image
+	// add sign on button it is current user.
 	if (!self.user) {
 		// add Sign Out button
 		UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
 		self.navigationItem.leftBarButtonItem = leftBarButton;
-		
-		// set up title with long press gesture recognizer
-		UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 300, 40)];
-		navLabel.text = user.name;
-		navLabel.textAlignment = NSTextAlignmentCenter;
-		navLabel.textColor = [UIColor whiteColor];
-		navLabel.font = [UIFont boldSystemFontOfSize:17.0f];    // default font for consistency
-		[navLabel setUserInteractionEnabled:YES];
-		self.navigationItem.titleView = navLabel;
-		
-		UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onNavBarLongPress)];
-		
-		[navLabel addGestureRecognizer:longPressGestureRecognizer];
-	} else {
-		self.navigationItem.title = user.name;
+
 	}
+	
+	self.navigationItem.title = user.name;
 	
 	// use banner url if provided, or profile bg url
 	NSString *bannerUrl = user.bannerUrl ? [NSString stringWithFormat:@"%@/mobile_retina", user.bannerUrl] : user.backgroundImageUrl;
 	[self.bgView setImageWithURL:[NSURL URLWithString:bannerUrl]];
 	
-	// add New button icon
-	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(onNew)];
+	// add new tweet icon
+	UIImage *image = [[UIImage imageNamed:@"new_tweet"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(onNew)];
 	self.navigationItem.rightBarButtonItem = rightBarButton;
 	
-	// register profile cell nib
+	// register profile cell
 	[self.tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:@"ProfileCell"];
 	
-	// register tweet cell nib
+	// register tweet cell
 	[self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
 	
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
-	//self.tableView.estimatedRowHeight = 105;
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	
-	// add pull to refresh tweets control
-	self.refreshTweetsControl = [[UIRefreshControl alloc] init];
-	[self.tableView addSubview:self.refreshTweetsControl];
-	[self.refreshTweetsControl addTarget:self action:@selector(refreshProfile) forControlEvents:UIControlEventValueChanged];
-	
-	// show loading indicator
-	//self.loadingIndicator = [SVProgressHUD show:self.view animated:YES];
+	// show spinner
+	[self showSpinner];
 	
 	if (user) {
 		[self refreshProfile];
@@ -91,6 +74,12 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+-(void) showSpinner{
+	[SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+	[SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeNone];
+	[SVProgressHUD setBackgroundColor:RGB(85, 172, 238)];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,6 +106,8 @@
 	if (indexPath.row == 0 ) {
 		self.tableView.rowHeight = 250;
 		ProfileCell *profileCell = [tableView dequeueReusableCellWithIdentifier:@"ProfileCell"];
+		profileCell.delegate = self;
+		
 		User *user;
 		
 		if (self.user) {
@@ -127,29 +118,37 @@
 		
 		[profileCell setUser:user];
 		
-		// to handle page change event
-		profileCell.delegate = self;
-		
 		return profileCell;
 	} else {
+		TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+		tweetCell.tweet = self.tweets[indexPath.row - 1];
+		tweetCell.delegate = self;
+		
 		if([self.tweets[indexPath.row - 1] retweeted] == YES )
 			self.tableView.rowHeight = 125;
 		else
 			self.tableView.rowHeight = 105;
 		
-		TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
-		tweetCell.tweet = self.tweets[indexPath.row - 1];
-		tweetCell.delegate = self;
-		
-		// if data for the last cell is requested, then obtain more data
+		// check, if we need more tweets...
 		if (indexPath.row == self.tweets.count - 1) {
-			NSLog(@"End of list reached...");
+			NSLog(@"End of list. fetch More...");
 			[self fetchMoreTweets];
 		}
 		
 		return tweetCell;
 	}
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(indexPath.row == 0)
+		return 250;
+	else if([self.tweets[indexPath.row - 1] retweeted] == YES )
+		return 125;
+	else
+		return 105;
+}
+
 
 - (void)didTweet:(Tweet *)tweet {
 	// only add if own tweet
@@ -174,7 +173,7 @@
 			self.tweets = tweets;
 			[self.tableView reloadData];
 		}
-		//[self.loadingIndicator hide:YES];
+		[SVProgressHUD dismiss];
 		[self.refreshTweetsControl endRefreshing];
 		[self.bgView setHidden:NO];
 		[self.tableView setHidden:NO];
@@ -190,6 +189,7 @@
 	if (self.user && ![self.user.screenName isEqualToString:[[User currentUser] screenName]]) {
 		vc.message = self.user;
 	}
+	
 	vc.delegate = self;
 	UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
 	nvc.navigationBar.translucent = NO;
@@ -211,27 +211,28 @@
 - (void) fetchMoreTweets {
 	//NO max_id str available, don't do anything
 	NSString *maxIdStr = [self.tweets[self.tweets.count - 1] idString];
-	if (maxIdStr != nil) {
+	if (maxIdStr == nil) {
 		return;
 	}
 	
 	[[TwitterClient sharedInstance] userTimelineWithParams:@{ @"max_id": maxIdStr} user:self.user completion:^(NSArray *tweets, NSError *error) {
-		// reload only if there is more data
+
 		if (error) {
 			NSLog(@"Error getting more tweets: %@", error);
 		} else if (tweets.count > 0) {
 			// ignore duplicate requests
 			if ([[tweets[tweets.count - 1] idString] isEqualToString:[self.tweets[self.tweets.count - 1] idString]]) {
-				NSLog(@"Ignoring duplicate data");
+				NSLog(@"Ignoring duplicates");
 			} else {
-				NSLog(@"Got %lu more tweets", (unsigned long)tweets.count);
-				NSMutableArray *temp = [NSMutableArray arrayWithArray:self.tweets];
-				[temp addObjectsFromArray:tweets];
-				self.tweets = [temp copy];
+				NSLog(@"%lu more tweets", (unsigned long)tweets.count);
+				NSMutableArray *newTweets = [NSMutableArray arrayWithArray:self.tweets];
+				[newTweets addObjectsFromArray:tweets];
+				self.tweets = [newTweets copy];
 				[self.tableView reloadData];
+				[SVProgressHUD dismiss];
 			}
 		} else {
-			NSLog(@"No more tweets retrieved");
+			NSLog(@"No more tweets got");
 		}
 	}];
 }
@@ -239,6 +240,7 @@
 - (void)onReply:(TweetCell *)tweetCell {
 	ComposeTweetViewController *vc = [[ComposeTweetViewController alloc] init];
 	vc.delegate = self;
+	
 	UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
 	nvc.navigationBar.translucent = NO;
 	// set reply to tweet property
@@ -251,12 +253,12 @@
 	NSString *profileScreenName = self.user ? self.user.screenName : [[User currentUser] screenName];
 	if ([user.screenName isEqualToString:profileScreenName]) {
 		NSLog(@"Profile for user already displayed");
-		// source: http://stackoverflow.com/questions/1632364/shake-visual-effect-on-iphone-not-shaking-the-device
+		// http://stackoverflow.com/questions/1632364/shake-visual-effect-on-iphone-not-shaking-the-device
 		CAKeyframeAnimation * anim = [ CAKeyframeAnimation animationWithKeyPath:@"transform" ] ;
 		anim.values = @[ [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-5.0f, 0.0f, 0.0f) ], [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(5.0f, 0.0f, 0.0f) ] ] ;
 		anim.autoreverses = YES ;
 		anim.repeatCount = 2.0f ;
-		anim.duration = 0.07f ;
+		anim.duration = 0.09f ;
 		
 		[self.view.layer addAnimation:anim forKey:nil];
 		return;
@@ -270,24 +272,15 @@
 	CGFloat scrollOffset = scrollView.contentOffset.y;
 	
 	if (scrollOffset < 0) {
-		// pulling down
 		self.bgImageHeightConstraint.constant = 80 - scrollOffset;
 		self.bgImageTopConstraint.constant = 0;
 	} else {
-		// scrolling up
 		self.bgImageHeightConstraint.constant = 80;
-		
-		// parallax
 		self.bgImageTopConstraint.constant = - scrollOffset / 3;
 	}
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-	CGFloat scrollOffset = scrollView.contentOffset.y;
-	// show accounts screen if pulled far enough
-	if (scrollOffset < -160) {
-		[self.delegate accountsPulled];
-	}
 }
 
 - (void)pageChanged:(UIPageControl *)pageControl {
@@ -304,10 +297,6 @@
 			[self.view layoutIfNeeded];
 		}];
 	}
-}
-
-- (void)onNavBarLongPress {
-	[self.delegate accountsPulled];
 }
 
 @end

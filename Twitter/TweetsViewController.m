@@ -9,6 +9,7 @@
 #import "TweetsViewController.h"
 #import "TweetViewController.h"
 #import "ComposeTweetViewController.h"
+#import "ProfileViewController.h"
 
 #import "User.h"
 #import "Tweet.h"
@@ -207,8 +208,15 @@
 	[self composeTweet:nil];
 }
 
+#pragma mark TweetCell deleate
 - (void)onReply:(TweetCell *)tweetCell {
 	[self composeTweet:tweetCell];
+}
+
+-(void) onProfile:(User *)user{
+	ProfileViewController *pvc = [[ProfileViewController alloc] init];
+	[pvc setUser:user];
+	[self.navigationController pushViewController:pvc animated:YES];
 }
 
 -(void) composeTweet:(TweetCell *)tweetCell{

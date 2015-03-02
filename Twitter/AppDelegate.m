@@ -31,10 +31,17 @@
 	User *user = [User currentUser];
 	if (user != nil) {
 		NSLog(@"Welcome %@", user.name);
-		self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MenuViewController alloc] init]];
 		
-		//TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
-		//self.window.rootViewController = tweetsViewController;
+		UINavigationController *pnvc = [[UINavigationController alloc] initWithRootViewController:[[MenuViewController alloc] init]];
+		
+		pnvc.navigationBar.barTintColor =  RGB(85, 172, 238);
+		pnvc.navigationBar.tintColor = [UIColor whiteColor];
+		[pnvc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+		pnvc.navigationBar.translucent = NO;
+		self.window.rootViewController = pnvc;
+		
+		
+		
 	} else {
 		NSLog(@"Not logged in");
 		self.window.rootViewController = [[LoginViewController alloc] init];
@@ -44,6 +51,7 @@
 	
 	// update status bar appearance
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	
 	return YES;
 }
 

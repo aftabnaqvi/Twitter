@@ -17,13 +17,13 @@
                         <rect key="frame" x="0.0" y="90" width="611" height="145"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlj-zb-Zcf">
-                                <rect key="frame" x="102" y="96" width="70" height="15"/>
+                                <rect key="frame" x="102" y="101" width="71" height="10"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-oZ-JoC">
-                                <rect key="frame" x="201" y="96" width="21" height="15"/>
+                                <rect key="frame" x="201" y="96" width="73" height="15"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAr-Kn-50q">
-                                <rect key="frame" x="17" y="96" width="54" height="15"/>
+                                <rect key="frame" x="17" y="96" width="72" height="15"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,16 +71,16 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6w-sf-th0" userLabel="Name Page">
-                        <rect key="frame" x="0.0" y="120" width="611" height="56"/>
+                        <rect key="frame" x="0.0" y="120" width="611" height="55.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="@Screen Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bno-Ro-4vg">
-                                <rect key="frame" x="16" y="33" width="83" height="14"/>
+                                <rect key="frame" x="16" y="32" width="82.5" height="14"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGA-pf-L8v">
-                                <rect key="frame" x="16" y="10" width="579" height="20"/>
+                                <rect key="frame" x="16" y="10" width="579" height="19.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,7 +138,7 @@
                     <constraint firstAttribute="trailing" secondItem="GFh-ha-azq" secondAttribute="trailing" id="cOo-R6-AFU"/>
                     <constraint firstItem="wDf-w5-52p" firstAttribute="width" secondItem="qPY-ZU-o6J" secondAttribute="width" constant="611" id="eOb-ZG-IhM"/>
                     <constraint firstItem="p6z-zT-a61" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="82" id="g3Z-ho-m37"/>
-                    <constraint firstItem="qPY-ZU-o6J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="h64-a8-rnu"/>
+                    <constraint firstItem="qPY-ZU-o6J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="h64-a8-rnu"/>
                     <constraint firstAttribute="bottom" secondItem="GFh-ha-azq" secondAttribute="bottom" constant="-1" id="jxN-Xo-x26"/>
                     <constraint firstItem="Eij-Af-3WR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="66" id="kYB-tM-lab"/>
                     <constraint firstItem="GFh-ha-azq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="p4T-G1-9Xv"/>
@@ -148,6 +148,7 @@
             <connections>
                 <outlet property="followerCountLabel" destination="L5C-oZ-JoC" id="p3s-Mi-Jtk"/>
                 <outlet property="followingCountLabel" destination="nlj-zb-Zcf" id="Fnt-xo-HI9"/>
+                <outlet property="nameLabel" destination="jGA-pf-L8v" id="GEG-Qf-OJh"/>
                 <outlet property="namePageLeftConstraint" destination="4Ii-hi-cCD" id="VcA-HX-yz6"/>
                 <outlet property="profileImageView" destination="Eij-Af-3WR" id="mJ5-ba-haK"/>
                 <outlet property="profilePageControl" destination="p6z-zT-a61" id="DEv-Ou-tKn"/>

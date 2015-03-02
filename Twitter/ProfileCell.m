@@ -51,13 +51,6 @@
 	[layer setBorderColor:[[UIColor whiteColor] CGColor]];
 	[layer setBorderWidth:3.0];
 	[layer setMasksToBounds:YES];
-
-	// hiding profilePageControl if tehre is no tagline.
-	if(!user.tagLine || [user.tagLine isEqualToString:@""]) {
-		[self.profilePageControl setHidden:YES];
-	} else {
-		[self.profilePageControl setHidden:NO];
-	}
 	
 	[self.profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:user.profileImageUrl]]
 	    placeholderImage:nil
@@ -80,6 +73,12 @@
 	self.tweetCountLabel.text = [self getFormattedCount:user.tweetCount];
 	self.followingCountLabel.text = [self getFormattedCount:user.friendCount];
 	self.followerCountLabel.text = [self getFormattedCount:user.followerCount];
+	
+	if(!user.tagLine || [user.tagLine isEqualToString:@""]) {
+		[self.profilePageControl setHidden:YES];
+	} else {
+		[self.profilePageControl setHidden:NO];
+	}
 }
 
 - (NSString *) getFormattedCount:(NSInteger)count {

@@ -12,12 +12,6 @@
 #import "TweetViewController.h"
 #import "ComposeTweetViewController.h"
 
-@protocol ProfileViewControllerDelegate <NSObject>
-
-- (void)accountsPulled;
-
-@end
-
 @interface ProfileViewController : UIViewController <UITableViewDataSource,
 													UITableViewDelegate,
 													ComposeTweetViewControllerDelegate,
@@ -26,8 +20,6 @@
 													ProfileCellDelegate>
 
 @property (strong, nonatomic) User *user;
-
-@property (nonatomic, weak) id <ProfileViewControllerDelegate> delegate;
 
 @end
 

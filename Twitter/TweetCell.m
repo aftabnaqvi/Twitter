@@ -35,6 +35,10 @@
 
 - (void)awakeFromNib {
 	// Initialization code
+	// sometime name label doesn't render properly. We need to set this property and
+	// override layoutSubViews
+	//self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
+	//self.tweetLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -50,24 +54,27 @@
 	Tweet *tweetToDisplay;
 	
 	if (tweet.retweetedTweet) {
+		
 		tweetToDisplay = tweet.retweetedTweet;
+		NSLog(@"retweetedByLabel: %@", user.name);
+
 		self.retweetedByLabel.text = [NSString stringWithFormat:@"%@ retweeted", user.name];
 		[self.retweetImageView setHidden:NO];
 		[self.retweetedByLabel setHidden:NO];
 		// update constraints dynamically
-		self.topProfileImageConstraint.constant = 30;
-		self.topNameConstraint.constant = 30;
-		self.topScreenNameConstraint.constant = 30;
-		self.topTimestampConstraint.constant = 30;
+		self.topProfileImageConstraint.constant = 32;
+		self.topNameConstraint.constant = 32;
+		self.topScreenNameConstraint.constant = 32;
+		self.topTimestampConstraint.constant = 32;
 	} else {
 		tweetToDisplay = tweet;
 		[self.retweetImageView setHidden:YES];
 		[self.retweetedByLabel setHidden:YES];
 		// update constraints dynamically
-		self.topProfileImageConstraint.constant = 15;
-		self.topNameConstraint.constant = 15;
+		self.topProfileImageConstraint.constant = 16;
+		self.topNameConstraint.constant = 16;
 		self.topScreenNameConstraint.constant = 16;
-		self.topTimestampConstraint.constant = 15;
+		self.topTimestampConstraint.constant = 16;
 	}
 	
 	// rounded corners for profile images
@@ -75,8 +82,12 @@
 	[layer setMasksToBounds:YES];
 	[layer setCornerRadius:3.0];
 	[self.profileImageView setImageWithURL:[NSURL URLWithString:tweetToDisplay.user.profileImageUrl]];
-	
-	self.nameLabel.text = tweetToDisplay.user.name;
+	//if(self.tweet.retweet == YES){
+		//self.nameLabel.text = self.user.;
+	//} else{
+	//self.retweetedByLabel.text = [NSString stringWithFormat:@"%@ tweetToDisplay ========= ", tweetToDisplay.user.name];
+		self.nameLabel.text = tweetToDisplay.user.name;
+	//}
 	self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweetToDisplay.user.screenName];
 	self.tweetLabel.text = tweetToDisplay.text;
 	
@@ -196,5 +207,21 @@
 	}
 	
 	[self highlightButton:self.favoriteButton highlight:favorited];
+}
+
+- (IBAction)onProfile:(UIButton *)sender {
+	NSLog(@"onProfile tapped");
+	if (_tweet.retweetedTweet) {
+		[self.delegate onProfile:_tweet.retweetedTweet.user];
+	} else {
+		[self.delegate onProfile:_tweet.user];
+	}
+}
+
+// sometime name label doesn't render properly. We need to set this property and
+// override layoutSubViews
+-(void) layoutSubviews{
+//	[super layoutSubviews];
+	//self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
 }
 @end

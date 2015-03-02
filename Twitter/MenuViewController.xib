@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
-                <outlet property="accountsView" destination="Vbg-Mq-9tU" id="VYo-NK-rxY"/>
                 <outlet property="contentView" destination="xrd-VJ-vUJ" id="DVV-Md-8FO"/>
                 <outlet property="contentViewXConstraint" destination="5jd-Mb-waq" id="ppA-du-uKV"/>
                 <outlet property="contentViewYConstraint" destination="c4t-NS-rCL" id="LMk-KY-AVW"/>
@@ -23,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gXa-iA-7dp">
-                            <rect key="frame" x="0.0" y="20" width="264" height="548"/>
+                            <rect key="frame" x="0.0" y="0.0" width="264" height="568"/>
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="264" id="Yy1-Ew-vqC"/>
@@ -52,7 +51,7 @@
                         <constraint firstAttribute="height" secondItem="xrd-VJ-vUJ" secondAttribute="height" id="F3n-S3-Goz"/>
                         <constraint firstAttribute="height" secondItem="Vbg-Mq-9tU" secondAttribute="height" id="FjV-Pq-4KO"/>
                         <constraint firstItem="gXa-iA-7dp" firstAttribute="leading" secondItem="4jJ-9Y-alY" secondAttribute="leading" id="I41-7f-yKo"/>
-                        <constraint firstItem="gXa-iA-7dp" firstAttribute="top" secondItem="4jJ-9Y-alY" secondAttribute="top" constant="20" id="Wju-sm-1ma"/>
+                        <constraint firstItem="gXa-iA-7dp" firstAttribute="top" secondItem="4jJ-9Y-alY" secondAttribute="top" id="Wju-sm-1ma"/>
                         <constraint firstAttribute="width" secondItem="Vbg-Mq-9tU" secondAttribute="width" id="bY3-Xl-3SL"/>
                         <constraint firstAttribute="centerY" secondItem="xrd-VJ-vUJ" secondAttribute="centerY" id="c4t-NS-rCL"/>
                         <constraint firstAttribute="width" secondItem="xrd-VJ-vUJ" secondAttribute="width" id="iXD-xJ-sMr"/>
